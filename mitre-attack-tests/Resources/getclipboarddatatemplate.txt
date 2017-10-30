@@ -1,0 +1,19 @@
+$fileName = '{filename}'
+ do{
+
+        $clipboard_data = Get-Clipboard 
+
+        Write-Host "Copied text: -" + $clipboard_data
+		$clipboard_data = $clipboard_data -replace '[[+*?()\\.]','\$&'
+		Write-Host "Copied text: -" + $clipboard_data
+        $b =  Select-String -Quiet -Pattern $clipboard_data -Path $fileName
+
+        if (-not $b)
+        {
+            Add-Content -Path $fileName -Value "$clipboard_data"
+        }
+        
+		sleep 3
+    }
+
+    while ($clipboard_data -ne "")
