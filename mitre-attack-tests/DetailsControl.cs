@@ -36,13 +36,20 @@ namespace mitre_attack_tests
 
         public LinkLabel MITRELink
         {
-            get { return linkLabel1; }
+            get { return MitreLink; }
             set { lbllTestDetails = value; }
         }
 
-        public void SetMITELink(string text)
+        public string MitreLinkText
         {
-            linkLabel1.Text = text;
+            get { return MitreLink.Text; }
+            set { MitreLink.Text = value; }
+        }
+
+        public string TestDetailsLinkText
+        {
+            get { return TestDetailLink.Text; }
+            set { TestDetailLink.Text = value; }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -52,7 +59,13 @@ namespace mitre_attack_tests
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProcessStartInfo sInfo = new ProcessStartInfo(linkLabel1.Text);
+            ProcessStartInfo sInfo = new ProcessStartInfo(MitreLink.Text);
+            Process.Start(sInfo);
+        }
+
+        private void TestDetailLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo(TestDetailLink.Text);
             Process.Start(sInfo);
         }
     }

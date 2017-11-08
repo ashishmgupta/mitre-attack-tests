@@ -16,7 +16,7 @@ namespace mitre_attack_tests
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GetKeystrokes());
+            Application.Run(new CreateAccount());
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Management.Automation;
 using System.Threading;
+using System.DirectoryServices;
+using System.DirectoryServices.AccountManagement;
 
 namespace mitre_attack_tests
 {
@@ -10,6 +12,7 @@ namespace mitre_attack_tests
     {
         public const string tempFolderName = "temp";
         public const string tempClipboardFileName = "clipboard.txt";
+        public const string tempKeystrokesFileName = "key.log";
 
         public static void CreateTempFolder()
         {
@@ -22,6 +25,13 @@ namespace mitre_attack_tests
             string clipboardDataFilePath = Path.Combine(GetTempDirectoryPath(), tempClipboardFileName);
             File.WriteAllText(clipboardDataFilePath, string.Empty);
             return clipboardDataFilePath;
+        }
+
+        public static string GetKeyStrokesDataFile()
+        {
+            string keystrokesDataFilePath = Path.Combine(GetTempDirectoryPath(), tempKeystrokesFileName);
+            File.WriteAllText(keystrokesDataFilePath, string.Empty);
+            return keystrokesDataFilePath;
         }
 
         public static string GetTempDirectoryPath()
@@ -74,5 +84,20 @@ namespace mitre_attack_tests
             File.WriteAllText(fileName, contents);
         }
 
+
+        public static string GetADPath()
+        {
+            string defaultNamingContext = string.Empty;
+            using (DirectoryEntry deRoot = new DirectoryEntry("LDAP://RootDSE"))
+            {
+                if (deRoot.Properties["defaultNamingContext"] != null)
+                {
+                     defaultNamingContext =
+                           deRoot.Properties["defaultNamingContext"].Value.ToString();
+                }
+            }
+
+            return defaultNamingContext;
+        }
     }
 }
